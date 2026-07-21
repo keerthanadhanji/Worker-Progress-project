@@ -32,12 +32,11 @@ This project replicates the layout of the Worker Progress Report PDF while provi
 
 # Project Structure
 Worker-Progress-Report/
-
-│── index.html
-│── style.css
-│── script.js
-│── logo.jpeg
-└── README.md
+│──index.html
+│──style.css
+│──script.js
+│──logo.jpeg
+└──README.md
 
 # Project Workflow
 
