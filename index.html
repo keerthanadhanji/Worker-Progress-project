@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Worker Progress Report</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+<!-- ===================== EDIT VIEW (fillable form) ===================== -->
+<div class="form-container edit-view" id="editView">
+
+  <!-- ===================== HEADER ===================== -->
+  <div class="header">
+    <div class="logo-block">
+      <img src="./logo.jpeg" alt="Workers Compensation Board of Manitoba logo" class="logo-img">
+      <p>
+        333 Broadway<br>
+        Winnipeg, MB R3C 4W3<br>
+        Phone: (204) 954-4321<br>
+        Toll Free: 1-855-954-4321<br>
+        wcb.mb.ca
+      </p>
+    </div>
+    <div class="title-block">
+      <h1>Worker Progress Report</h1>
+      <span class="claim-box">
+        <input type="text" id="claimNoInput" name="claimNo" class="claim-input" placeholder="claim No: 20042047">
+      </span>
+      <span class="claim-box">WP</span>
+    </div>
+  </div>
+
+  <!-- The actual form starts here -->
+  <form id="progressForm">
+
+    <div class="page-indicator">Page <span id="currentPageNum">1</span> of 3</div>
+
+    <!-- ===================== FORM PAGE 1 (matches PDF page 1) ===================== -->
+    <div class="form-page" id="formPage1" data-page="1">
+
+      <div class="worker-name-row">
+        <label for="workerName">Worker Name (as shown on your claim):</label>
+        <input type="text" id="workerName" name="workerName" placeholder="e.g. Madeleine Willson" required>
+      </div>
+
+      <div class="inline-fields">
+        <div>
+          <label for="reportDate">Report Date</label>
+          <input type="date" id="reportDate" name="reportDate" required>
+        </div>
+      </div>
+
+      <!-- ===================== RETURN TO WORK ===================== -->
+      <h3 class="section-title">Return to Work</h3>
+
+      <div class="field-box">
+        <div class="field-box-title">Select one:</div>
+        <div class="option-row">
+          <label><input type="radio" name="rtwStatus" value="not_missed" required> I have not missed time from work</label>
+          <label><input type="radio" name="rtwStatus" value="not_returned" required> I have not returned to work</label>
+          <label><input type="radio" name="rtwStatus" value="returned" required> I returned to work on:</label>
+        </div>
+        <div class="sub-field" id="returnedDateWrap">
+          <label for="returnedDate">Date</label>
+          <input type="date" id="returnedDate" name="returnedDate">
+        </div>
+      </div>
+
+      <div class="field-box">
+        <div class="field-box-title">I am working:</div>
+        <div class="option-row">
+          <label><input type="radio" name="workType" value="full_regular"> Full duties, regular hours</label>
+          <label><input type="radio" name="workType" value="full_reduced"> Full duties, reduced hours</label>
+          <label><input type="radio" name="workType" value="modified_regular"> Modified duties, regular hours</label>
+          <label><input type="radio" name="workType" value="modified_reduced"> Modified duties, reduced hours</label>
+          <label><input type="radio" name="workType" value="other" id="workTypeOther"> Other:</label>
+        </div>
+        <div class="sub-field" id="workTypeOtherWrap">
+          <input type="text" id="workTypeOtherText" name="workTypeOtherText" placeholder="Describe other work arrangement">
+        </div>
+      </div>
+
+      <div class="field-box">
+        <div class="field-box-title">My return to work is going:</div>
+        <textarea name="rtwComments" placeholder="Describe how your return to work is going"></textarea>
+      </div>
+
+      <div class="inline-fields">
+        <div>
+          <label for="expectedReturnDate">I expect to return to work on:</label>
+          <input type="date" id="expectedReturnDate" name="expectedReturnDate">
+        </div>
+      </div>
+
+      <div class="field-box">
+        <div class="field-box-title">I have the following concerns about returning to work:</div>
+        <textarea name="rtwConcerns" placeholder="List any concerns"></textarea>
+      </div>
+
+      <div class="inline-fields">
+        <div>
+          <label for="contactName">I was most recently in contact with (Name of employer contact):</label>
+          <input type="text" id="contactName" name="contactName">
+        </div>
+        <div>
+          <label for="contactDate">Date</label>
+          <input type="date" id="contactDate" name="contactDate">
+        </div>
+      </div>
+
+      <!-- ===================== RECOVERY ===================== -->
+      <h3 class="section-title">Recovery</h3>
+
+      <div class="field-box">
+        <div class="field-box-title">Select one:</div>
+        <div class="option-row">
+          <label><input type="radio" name="recoveryStatus" value="not_recovered" required> I have not fully recovered from my workplace injury.</label>
+          <label><input type="radio" name="recoveryStatus" value="recovered" required> I have fully recovered from my workplace injury.</label>
+        </div>
+      </div>
+
+      <div class="field-box">
+        <div class="field-box-title">I have provided the following comments about my recovery:</div>
+        <textarea name="recoveryComments" placeholder="Additional comments about recovery"></textarea>
+      </div>
+
+      <div class="page-nav">
+        <span></span>
+        <button type="button" class="action-btn next-page-btn">Next &rarr;</button>
+      </div>
+    </div>
+    <!-- ===================== END FORM PAGE 1 ===================== -->
+
+    <!-- ===================== FORM PAGE 2 (matches PDF page 2) ===================== -->
+    <div class="form-page" id="formPage2" data-page="2" style="display:none;">
+
+      <div class="field-box">
+        <div class="field-box-title">I rate my current pain/discomfort on a scale of 1-10 (1 = no pain, 10 = severe pain):</div>
+        <div class="pain-scale">
+          <label><input type="radio" name="painScale" value="1">1</label>
+          <label><input type="radio" name="painScale" value="2">2</label>
+          <label><input type="radio" name="painScale" value="3">3</label>
+          <label><input type="radio" name="painScale" value="4">4</label>
+          <label><input type="radio" name="painScale" value="5">5</label>
+          <label><input type="radio" name="painScale" value="6">6</label>
+          <label><input type="radio" name="painScale" value="7">7</label>
+          <label><input type="radio" name="painScale" value="8">8</label>
+          <label><input type="radio" name="painScale" value="9">9</label>
+          <label><input type="radio" name="painScale" value="10">10</label>
+        </div>
+      </div>
+
+      <div class="field-box">
+        <div class="field-box-title">Select one:</div>
+        <div class="option-row">
+          <label><input type="radio" name="medicalTreatment" value="no_treatment"> I am not continuing to receive medical treatment for my workplace injury.</label>
+          <label><input type="radio" name="medicalTreatment" value="yes_treatment"> I am continuing to receive medical treatment for my workplace injury from:</label>
+        </div>
+        <div class="sub-field" id="medicalProviderWrap">
+          <label for="medicalProviderType">Medical Provider Type</label>
+          <input type="text" id="medicalProviderType" name="medicalProviderType" placeholder="e.g. Physiotherapist">
+        </div>
+      </div>
+
+      <div class="inline-fields">
+        <div>
+          <label for="lastTreatmentDate">My last medical treatment was from (Date)</label>
+          <input type="date" id="lastTreatmentDate" name="lastTreatmentDate">
+        </div>
+        <div>
+          <label for="lastTreatmentProvider">Medical Provider Name</label>
+          <input type="text" id="lastTreatmentProvider" name="lastTreatmentProvider">
+        </div>
+      </div>
+
+      <div class="inline-fields">
+        <div>
+          <label for="nextTreatmentDate">My next medical treatment is from (Date)</label>
+          <input type="date" id="nextTreatmentDate" name="nextTreatmentDate">
+        </div>
+        <div>
+          <label for="nextTreatmentProvider">Medical Provider Name</label>
+          <input type="text" id="nextTreatmentProvider" name="nextTreatmentProvider">
+        </div>
+      </div>
+
+      <div class="inline-fields">
+        <div>
+          <label for="chiroFrequency">I am attending a Chiropractor or Physiotherapist (Frequency)</label>
+          <input type="text" id="chiroFrequency" name="chiroFrequency" placeholder="e.g. twice a week">
+        </div>
+      </div>
+
+      <div class="field-box">
+        <div class="field-box-title">Select one:</div>
+        <div class="option-row">
+          <label><input type="radio" name="medication" value="no_medication"> I am not taking medication for my workplace injury.</label>
+          <label><input type="radio" name="medication" value="yes_medication"> I am taking medication for my workplace injury:</label>
+        </div>
+        <div class="sub-field" id="medicationNameWrap">
+          <label for="medicationName">Name of prescribed medication</label>
+          <input type="text" id="medicationName" name="medicationName">
+        </div>
+      </div>
+
+      <div class="field-box">
+        <div class="field-box-title">Select one:</div>
+        <div class="option-row">
+          <label><input type="radio" name="homeExercises" value="no_exercises"> I am not doing home exercises for my workplace injury.</label>
+          <label><input type="radio" name="homeExercises" value="yes_exercises"> I am doing home exercises for my workplace injury.</label>
+        </div>
+        <div class="sub-field" id="exercisesListWrap">
+          <label for="exercisesList">List the exercises you are doing:</label>
+          <textarea id="exercisesList" name="exercisesList"></textarea>
+        </div>
+      </div>
+
+      <!-- ===================== OTHER INFORMATION ===================== -->
+      <h3 class="section-title">Other Information</h3>
+      <div class="field-box">
+        <div class="field-box-title">I would like to provide the following additional information about my claim/injury:</div>
+        <textarea name="otherInfo" placeholder="Additional information"></textarea>
+      </div>
+
+      <div class="page-nav">
+        <button type="button" class="action-btn secondary prev-page-btn">&larr; Back</button>
+        <button type="button" class="action-btn next-page-btn">Next &rarr;</button>
+      </div>
+    </div>
+    <!-- ===================== END FORM PAGE 2 ===================== -->
+
+    <!-- ===================== FORM PAGE 3 (matches PDF page 3) ===================== -->
+    <div class="form-page" id="formPage3" data-page="3" style="display:none;">
+
+      <!-- ===================== CERTIFICATION ===================== -->
+      <div class="certify-box">
+        <label>
+          <input type="checkbox" id="certifyCheck" required>
+          I certify that the information given on this form is true, correct and complete to the best of my
+          knowledge. I agree to notify the Workers Compensation Board of Manitoba (WCB) immediately once I
+          return to any form of work and/or employment. I understand that it is an offence to knowingly make
+          a false statement to the WCB. I also understand that it is an offence to withhold information from
+          WCB which affects my entitlement to compensation (e.g., full or partial recovery from injury,
+          ability to return to work, sources of additional income, etc.). I understand that refusing to
+          co-operate with, or follow my treatment, may result in the WCB reducing or suspending my benefits.
+          I understand that the Privacy Notice applies to the personal information collected in this document.
+        </label>
+        <p class="error-text" id="certifyError">You must certify this statement before submitting.</p>
+      </div>
+
+      <div class="page-nav">
+        <button type="button" class="action-btn secondary prev-page-btn">&larr; Back</button>
+        <button type="submit" class="submit-btn">Submit Report</button>
+      </div>
+    </div>
+    <!-- ===================== END FORM PAGE 3 ===================== -->
+
+  </form>
+
+  <div class="footer-meta">
+    <span>Worker App ID: 712041</span>
+    <span id="submittedStamp">Not yet submitted</span>
+  </div>
+
+</div>
+<!-- ===================== END EDIT VIEW ===================== -->
+
+<!-- ===================== REPORT VIEW (3-page PDF-style output) ===================== -->
+<div class="report-view" id="reportView" style="display:none;">
+  <div class="report-actions">
+    <button type="button" id="backToEditBtn" class="action-btn secondary">&larr; Back to Edit</button>
+    <button type="button" id="printReportBtn" class="action-btn">Print / Save as PDF</button>
+  </div>
+  <div id="reportPages"></div>
+</div>
+
+<!-- ===================== JAVASCRIPT ===================== -->
+<script src="./script.js"></script>
+
+</body>
+</html>
